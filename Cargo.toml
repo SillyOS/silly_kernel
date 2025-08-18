@@ -1,7 +1,7 @@
-[package]
-name = "silly_os"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+members = ["main", "vga_buffer"]
+resolver = "2"
 
-[dependencies]
+[workspace.dependencies]
 bootloader = "0.9.1"
+vga_buffer = { path = "vga_buffer" }
