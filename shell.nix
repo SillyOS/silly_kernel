@@ -3,6 +3,7 @@
 pkgs.mkShell {
   buildInputs = [
     pkgs.rustup
+    pkgs.llvm
     pkgs.qemu
     pkgs.gnumake
     pkgs.pkg-config
