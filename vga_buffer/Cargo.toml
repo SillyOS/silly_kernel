@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+volatile = { workspace = true }
+lazy_static = { workspace = true, features = ["spin_no_std"] }
+spin = { workspace = true }
