@@ -1,5 +1,5 @@
 [workspace]
-members = ["main", "vga_buffer"]
+members = ["main", "shared", "vga_buffer"]
 resolver = "2"
 
 [workspace.dependencies]
@@ -7,4 +7,6 @@ bootloader = "0.9.1"
 volatile = "0.2.6"
 lazy_static = "1.4.0"
 spin = "0.5.2"
+x86_64 = "0.15.2"
 vga_buffer = { path = "vga_buffer" }
+shared = { path = "shared" }
