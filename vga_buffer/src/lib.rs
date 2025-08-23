@@ -27,7 +27,7 @@ pub fn _print(args: fmt::Arguments) {
 }
 
 #[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
+pub fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
     loop {}
 }
