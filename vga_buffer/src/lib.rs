@@ -1,6 +1,10 @@
 #![no_std]
+#![no_main]
+#![feature(custom_test_frameworks)]
+#![test_runner(crate::test_runner)]
 
 use core::fmt;
+use core::panic::PanicInfo;
 use lazy_static::lazy_static;
 use spin::Mutex;
 use volatile::Volatile;
@@ -20,6 +24,12 @@ macro_rules! println {
 pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
     WRITER.lock().write_fmt(args).unwrap();
+}
+
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
+    loop {}
 }
 
 #[allow(dead_code)]
@@ -143,4 +153,12 @@ lazy_static! {
         color_code: ColorCode::new(Color::Yellow, Color::Black),
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
+}
+
+#[cfg(test)]
+fn test_runner(tests: &[&dyn Fn()]) {
+    println!("Running {} tests", tests.len());
+    for test in tests {
+        test();
+    }
 }
