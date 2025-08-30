@@ -1,15 +1,25 @@
-[workspace]
-members = ["main",  "vga_buffer"]
-resolver = "2"
+[package]
+name = "silly_os"
+version = "0.1.0"
+edition = "2024"
 
-[workspace.dependencies]
-bootloader = "0.9.1"
+[dependencies]
+bootloader = { version = "0.9", features = ["map_physical_memory"] }
 volatile = "0.2.6"
-lazy_static = "1.4.0"
 spin = "0.5.2"
-x86_64 = "0.15.2"
-vga_buffer = { path = "vga_buffer" }
+x86_64 = "0.14.2"
 
-[workspace.package.metadata.bootimage]
-test-args = []
-test-success-exit-code = 33
+[dependencies.lazy_static]
+version = "1.0"
+features = ["spin_no_std"]
+
+[package.metadata.bootimage]
+test-args = [
+    "-device",
+    "isa-debug-exit,iobase=0xf4,iosize=0x04",
+    "-serial",
+    "stdio",
+    "-display",
+    "none",
+]
+test-success-exit-code = 33 # (0x10 << 1) | 1
