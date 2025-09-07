@@ -54,7 +54,6 @@ pub fn test_panic_handler(info: &PanicInfo) -> ! {
     loop {}
 }
 
-/// Entry point for `cargo test`
 #[cfg(test)]
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
