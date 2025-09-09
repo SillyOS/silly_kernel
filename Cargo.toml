@@ -3,6 +3,10 @@ name = "silly_os"
 version = "0.1.0"
 edition = "2024"
 
+[[test]]
+name = "should_panic"
+harness = false
+
 [dependencies]
 bootloader = { version = "0.9.33", features = ["map_physical_memory"] }
 volatile = "0.2.6"
