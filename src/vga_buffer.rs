@@ -10,10 +10,9 @@ macro_rules! print {
 
 #[macro_export]
 macro_rules! println {
-	    () => (print!("\n"));
-	    ($fmt:expr) => (print!(concat!($fmt, "\n")));
-	    ($fmt:expr, $($arg:tt)*) => (print!(concat!($fmt, "\n"), $($arg)*));
-	}
+    () => ($crate::print!("\n"));
+    ($($arg:tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)));
+}
 
 #[doc(hidden)]
 pub fn _print(args: fmt::Arguments) {
